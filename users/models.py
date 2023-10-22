@@ -17,3 +17,14 @@ class User(models.Model):
 
     def __str__(self):
         return self.firstName + " " + self.lastName
+
+
+class Follow(models.Model):
+    id = models.AutoField(primary_key=True)
+    follower_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='followers')
+    followed_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='follows')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.follower_id) + " follows " + str(self.followee_id)
