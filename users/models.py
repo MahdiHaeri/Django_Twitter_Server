@@ -7,7 +7,7 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50, unique=True)
     phoneNumber = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
