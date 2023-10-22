@@ -13,4 +13,4 @@ class Bio(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.user_id) + " " + self.content
+        return str(self.user_id) + " " + self.biography

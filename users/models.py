@@ -27,7 +27,7 @@ class Follow(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.follower_id) + " follows " + str(self.followee_id)
+        return str(self.follower_id) + " follows " + str(self.followed_id)
 
 
 class Block(models.Model):
