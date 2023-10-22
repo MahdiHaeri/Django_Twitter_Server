@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet
+from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet, Like
 
 
 # Register your models here.
@@ -29,7 +29,13 @@ class QuoteTweetAdmin(admin.ModelAdmin):
         'created_at', 'updated_at')
 
 
-admin.site.register(Tweet)
-admin.site.register(Retweet)
-admin.site.register(ReplyTweet)
-admin.site.register(QuoteTweet)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'user_id', 'tweet_id', 'created_at', 'updated_at')
+
+
+admin.site.register(Tweet, TweetAdmin)
+admin.site.register(Retweet, RetweetAdmin)
+admin.site.register(ReplyTweet, ReplyTweetAdmin)
+admin.site.register(QuoteTweet, QuoteTweetAdmin)
+admin.site.register(Like, LikeAdmin)
