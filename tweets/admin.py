@@ -14,19 +14,19 @@ class TweetAdmin(admin.ModelAdmin):
 class RetweetAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at')
+        'created_at', 'updated_at', 'retweet_id')
 
 
 class ReplyTweetAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at')
+        'created_at', 'updated_at', 'reply_id')
 
 
 class QuoteTweetAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at')
+        'created_at', 'updated_at', 'quote_id')
 
 
 class LikeAdmin(admin.ModelAdmin):

@@ -5,4 +5,5 @@ from users import views as users_views
 urlpatterns = [
     path('users/', include("users.urls")),
     path('tweets/', include("tweets.urls")),
+    path('profiles/', include("profiles.urls")),
 ]
