@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tweets.models import Tweet, Retweet
+from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet, Like
 
 
 class TweetSerializer(serializers.ModelSerializer):
@@ -16,17 +16,17 @@ class RetweetSerializer(serializers.ModelSerializer):
 
 class ReplyTweetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tweet
+        model = ReplyTweet
         fields = '__all__'
 
 
 class QuoteTweetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tweet
+        model = QuoteTweet
         fields = '__all__'
 
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tweet
+        model = Like
         fields = '__all__'

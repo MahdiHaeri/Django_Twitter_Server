@@ -2,8 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet
-from tweets.serializers import TweetSerializer, RetweetSerializer, ReplyTweetSerializer, QuoteTweetSerializer
+from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet, Like
+from tweets.serializers import TweetSerializer, RetweetSerializer, ReplyTweetSerializer, QuoteTweetSerializer, \
+    LikeSerializer
 
 
 class TweetView(APIView):
@@ -95,4 +96,27 @@ class QuoteTweetDetailsView(APIView):
             serializer = QuoteTweetSerializer(quote_tweet)
             return Response(serializer.data)
         except QuoteTweet.DoesNotExist:
+            return Response({"message": "tweet not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+class LikeView(APIView):
+    def get(self, request):
+        likes = Like.objects.all()
+        serializer = LikeSerializer(likes, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = LikeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data)
+
+
+class LikeDetailsView(APIView):
+    def get(self, request, tweet_id):
+        try:
+            like = Like.objects.get(id=tweet_id)
+            serializer = LikeSerializer(like)
+            return Response(serializer.data)
+        except Like.DoesNotExist:
             return Response({"message": "tweet not found"}, status=status.HTTP_404_NOT_FOUND)

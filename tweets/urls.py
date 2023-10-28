@@ -13,4 +13,7 @@ urlpatterns = [
 
     path('quote_tweets/', views.QuoteTweetView.as_view()),
     path('quote_tweets/<int:tweet_id>/', views.QuoteTweetDetailsView.as_view()),
+
+    path('likes/', views.LikeView.as_view()),
+    path('likes/<int:tweet_id>/', views.LikeDetailsView.as_view()),
 ]
