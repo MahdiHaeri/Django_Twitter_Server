@@ -1,28 +1,29 @@
-from django.db import models
-
+from django.contrib.auth.base_user import AbstractBaseUser
 
 # Create your models here.
 
-class User(models.Model):
-    id = models.AutoField(primary_key=True)
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50, unique=True)
-    phoneNumber = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.db import models
+
+
+class CustomUser(AbstractUser, PermissionsMixin):
+    phone_number = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    birthday = models.CharField(max_length=50)
+    birthday = models.DateField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # USERNAME_FIELD = 'username'
+    # REQUIRED_FIELDS = []
+
     def __str__(self):
-        return self.firstName + " " + self.lastName
+        return self.username
 
 
 class Follow(models.Model):
     id = models.AutoField(primary_key=True)
-    follower = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='followers')
-    followed = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='follows')
+    follower = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='followers')
+    followed = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='follows')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -32,8 +33,8 @@ class Follow(models.Model):
 
 class Block(models.Model):
     id = models.AutoField(primary_key=True)
-    blocker = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blockers')
-    blocked = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blocks')
+    blocker = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='blockers')
+    blocked = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='blocks')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

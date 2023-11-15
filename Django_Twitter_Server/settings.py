@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -104,7 +106,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_twitter',
+        'NAME': 'twitter',
         'USER': 'postgres',
         'PASSWORD': 'mahdi',
         'HOST': '127.0.0.1',

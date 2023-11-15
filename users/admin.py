@@ -1,13 +1,12 @@
 from django.contrib import admin
-
-from users.models import User, Follow, Block
+from users.models import CustomUser, Follow, Block
 
 
 # Register your models here.
 
-class UserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'firstName', 'lastName', 'email', 'password', 'phoneNumber',
+        'username', 'first_name', 'last_name', 'email', 'password', 'phone_number',
         'country', 'birthday', 'created_at', 'updated_at')
 
 
@@ -21,6 +20,6 @@ class BlockAdmin(admin.ModelAdmin):
         'id', 'blocker', 'blocked', 'created_at', 'updated_at')
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(Block, BlockAdmin)

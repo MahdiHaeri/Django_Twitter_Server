@@ -3,7 +3,7 @@ from django.db import models
 
 class Tweet(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     tweet_type = models.CharField(max_length=10)
     content = models.CharField(max_length=50)
     replyCount = models.IntegerField()
@@ -39,7 +39,7 @@ class QuoteTweet(Tweet):
 
 class Like(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     tweet = models.ForeignKey('tweets.Tweet', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
