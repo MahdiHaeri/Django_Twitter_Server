@@ -7,7 +7,7 @@ from profiles.models import Bio
 
 class BioAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'biography', 'location', 'website', 'created_at', 'updated_at')
+        'id', 'user', 'biography', 'location', 'website', 'created_at', 'updated_at')
 
 
 admin.site.register(Bio, BioAdmin)

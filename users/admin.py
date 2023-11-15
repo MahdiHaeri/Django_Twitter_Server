@@ -13,12 +13,12 @@ class UserAdmin(admin.ModelAdmin):
 
 class FollowAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'follower_id', 'followed_id', 'created_at', 'updated_at')
+        'id', 'follower', 'followed', 'created_at', 'updated_at')
 
 
 class BlockAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'blocker_id', 'blocked_id', 'created_at', 'updated_at')
+        'id', 'blocker', 'blocked', 'created_at', 'updated_at')
 
 
 admin.site.register(User, UserAdmin)

@@ -7,31 +7,31 @@ from tweets.models import Tweet, Retweet, ReplyTweet, QuoteTweet, Like
 
 class TweetAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
+        'id', 'user', 'tweet_type', 'content', 'replyCount', 'retweetCount', 'likeCount',
         'created_at', 'updated_at')
 
 
 class RetweetAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at', 'retweet_id')
+        'id', 'user', 'tweet_type', 'content', 'replyCount', 'retweetCount', 'likeCount',
+        'created_at', 'updated_at', 'retweet')
 
 
 class ReplyTweetAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at', 'reply_id')
+        'id', 'user', 'tweet_type', 'content', 'replyCount', 'retweetCount', 'likeCount',
+        'created_at', 'updated_at', 'reply')
 
 
 class QuoteTweetAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'content', 'replyCount', 'retweetCount', 'likeCount',
-        'created_at', 'updated_at', 'quote_id')
+        'id', 'user', 'tweet_type', 'content', 'replyCount', 'retweetCount', 'likeCount',
+        'created_at', 'updated_at', 'quote')
 
 
 class LikeAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'user_id', 'tweet_id', 'created_at', 'updated_at')
+        'id', 'user', 'tweet', 'created_at', 'updated_at')
 
 
 admin.site.register(Tweet, TweetAdmin)
