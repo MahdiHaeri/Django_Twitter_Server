@@ -21,8 +21,8 @@ class User(models.Model):
 
 class Follow(models.Model):
     id = models.AutoField(primary_key=True)
-    follower_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='followers')
-    followed_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='follows')
+    follower = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='followers')
+    followed = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='follows')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -32,8 +32,8 @@ class Follow(models.Model):
 
 class Block(models.Model):
     id = models.AutoField(primary_key=True)
-    blocker_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blockers')
-    blocked_id = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blocks')
+    blocker = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blockers')
+    blocked = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='blocks')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
