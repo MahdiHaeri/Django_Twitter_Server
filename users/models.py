@@ -10,8 +10,6 @@ class CustomUser(AbstractUser, PermissionsMixin):
     phone_number = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     birthday = models.DateField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     # USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = []

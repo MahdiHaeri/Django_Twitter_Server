@@ -7,17 +7,17 @@ from users.models import CustomUser, Follow, Block
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
         'username', 'first_name', 'last_name', 'email', 'password', 'phone_number',
-        'country', 'birthday', 'created_at', 'updated_at')
+        'country', 'birthday')
 
 
 class FollowAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'follower', 'followed', 'created_at', 'updated_at')
+        'id', 'follower', 'followed')
 
 
 class BlockAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'blocker', 'blocked', 'created_at', 'updated_at')
+        'id', 'blocker', 'blocked')
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
