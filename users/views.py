@@ -1,4 +1,7 @@
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -6,11 +9,33 @@ from users.serializers import UserSerializer, FollowSerializer, BlockSerializer
 from users.models import CustomUser, Follow, Block
 
 
+# @authentication_classes([])  # Empty list means no authentication classes
+# @permission_classes([AllowAny])
 class UserView(APIView):
+    permission_classes = [IsAdminUser]
+
+    # def get(self, request):
+    #     users = CustomUser.objects.all()
+    #     serializer = UserSerializer(users, many=True)
+    #     return Response(serializer.data)
+
     def get(self, request):
-        users = CustomUser.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+        if request.user.is_authenticated:
+            if request.user.is_staff:  # Assuming 'is_staff' indicates admin status
+                users = CustomUser.objects.all()
+                serializer = UserSerializer(users, many=True)
+                return Response(serializer.data)
+            else:
+                # Return limited information for non-admin users
+                user_data = {
+                    'id': request.user.id,
+                    'username': request.user.username,
+                    'email': request.user.email,
+                    # Add other fields you want to include for non-admin users
+                }
+                return Response({'user': user_data})
+        else:
+            return Response({'detail': 'Authentication credentials were not provided.'}, status=401)
 
     def post(self, request):
         serializer = UserSerializer(data=request.data)
